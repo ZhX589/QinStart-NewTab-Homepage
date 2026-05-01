@@ -1,0 +1,62 @@
+name: Sync from upstream repository
+
+on:
+  # 手动触发
+  workflow_dispatch:
+  # 定时触发（每天北京时间8点检查更新）
+  schedule:
+    - cron: '0 0 * * *'
+  # 可选：当原始仓库有推送时触发（需原始仓库支持，暂不开启）
+  # repository_dispatch:
+  #   types: [sync]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 检出当前仓库（主页仓库）
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          path: ./homepage
+
+      # 2. 检出原始项目仓库（轻启标签页）
+      - name: Checkout upstream repository
+        uses: actions/checkout@v4
+        with:
+          repository: ZhX589/QinStart-NewTab
+          path: ./upstream
+          ref: main  # 跟踪main分支
+
+      # 3. 同步 src 目录到 docs/
+      - name: Sync files to docs/
+        run: |
+          # 确保 docs/ 目录存在
+          mkdir -p ./homepage/docs
+          
+          # 复制 upstream/src/ 下的所有内容到 homepage/docs/
+          # 注意：排除可能存在的 .git 等隐藏文件
+          rsync -av --delete \
+            --exclude='.git*' \
+            --exclude='*.swp' \
+            ./upstream/src/ ./homepage/docs/
+          
+          # 复制 index.html 到 docs/ （因为主页也要发布）
+          cp ./homepage/index.html ./homepage/docs/
+          
+          # 修改演示页面的资源引用路径（如果原始HTML中有相对路径问题）
+          # 原始仓库的 QinStartNewTaab.html 引用的 css/js 都在同级目录，无需修改
+          # 但为了保险，可以检查并修正
+          if [ -f ./homepage/docs/QinStartNewTaab.html ]; then
+            echo "Online demo page ready: /QinStart-NewTab.html"
+          fi
+
+      # 4. 提交并推送变更
+      - name: Commit and push changes
+        run: |
+          cd ./homepage
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: sync upstream src/ on $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
