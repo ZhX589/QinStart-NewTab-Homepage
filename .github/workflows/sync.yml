@@ -35,20 +35,24 @@ jobs:
           mkdir -p ./homepage/docs
           
           # 复制 upstream/src/ 下的所有内容到 homepage/docs/
-          # 注意：排除可能存在的 .git 等隐藏文件
           rsync -av --delete \
             --exclude='.git*' \
             --exclude='*.swp' \
             ./upstream/src/ ./homepage/docs/
           
-          # 复制 index.html 到 docs/ （因为主页也要发布）
+          # 【关键修改】重命名 HTML 文件
+          if [ -f ./homepage/docs/QinStartNewTaab.html ]; then
+            mv ./homepage/docs/QinStartNewTaab.html ./homepage/docs/QinStart-NewTab.html
+            echo "Renamed: QinStartNewTaab.html -> QinStart-NewTab.html"
+          fi
+          
+          # 复制 index.html 到 docs/
           cp ./homepage/index.html ./homepage/docs/
           
-          # 修改演示页面的资源引用路径（如果原始HTML中有相对路径问题）
-          # 原始仓库的 QinStartNewTaab.html 引用的 css/js 都在同级目录，无需修改
-          # 但为了保险，可以检查并修正
-          if [ -f ./homepage/docs/QinStartNewTaab.html ]; then
-            echo "Online demo page ready: /QinStart-NewTab.html"
+          # 可选：修改 HTML 内的资源引用（如果 HTML 中引用了自己的文件名）
+          if [ -f ./homepage/docs/QinStart-NewTab.html ]; then
+            # 替换可能的自引用链接（如果有）
+            sed -i 's/QinStartNewTaab.html/QinStart-NewTab.html/g' ./homepage/docs/QinStart-NewTab.html
           fi
 
       # 4. 提交并推送变更
