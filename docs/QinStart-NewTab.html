@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻启标签页</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- 毛玻璃主容器 -->
+    <div class="main-card">
+        <!-- ==================== 顶部：时钟 ==================== -->
+        <div class="time-section">
+            <div class="clock" id="clock">00:00:00</div>
+            <div class="date" id="date">加载中...</div>
+        </div>
+    
+        <!-- ==================== 中部：搜索框 ==================== -->
+        <div class="search-section">
+            <form class="search-box" id="searchForm" action="https://www.bing.com/search" method="get" target="_self">
+                <span class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="search-input" name="q" placeholder="必应搜索" autocomplete="off" id="searchInput">
+            </form>
+        </div>
+    
+        <!-- ==================== 底部：一言语录 ==================== -->
+        <div class="quote-section">
+            <div class="quote-card">
+                <p class="quote-text" id="hitokoto_text">『数据加载中...』</p>
+                <span class="quote-author" id="hitokoto_author"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 设置按钮 ==================== -->
+    <button class="settings-btn" id="settingsBtn" title="设置">⚙</button>
+
+    <!-- ==================== 设置面板 ==================== -->
+    <div class="settings-overlay" id="settingsOverlay">
+        <div class="settings-panel">
+            <h2>设置</h2>
+
+            <div class="setting-group">
+                <span class="setting-label">搜索行为</span>
+                <div class="search-behavior-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="newTabSearchToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label" id="newTabSearchLabel">在新标签页打开搜索结果</span>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <span class="setting-label">显示模式</span>
+                <div class="mode-toggle">
+                    <button class="mode-btn active" id="modeLightBtn">☀ 亮色</button>
+                    <button class="mode-btn" id="modeDarkBtn">🌙 暗色</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <span class="setting-label">亮色背景图片</span>
+                <div class="file-input-row">
+                    <label class="file-input-label" for="bgLightInput">选择文件</label>
+                    <input type="file" class="file-input" id="bgLightInput" accept="image/*">
+                    <span class="file-name" id="bgLightName">未设置</span>
+                    <button class="reset-btn" id="resetLightBg">重置</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <span class="setting-label">暗色背景图片</span>
+                <div class="file-input-row">
+                    <label class="file-input-label" for="bgDarkInput">选择文件</label>
+                    <input type="file" class="file-input" id="bgDarkInput" accept="image/*">
+                    <span class="file-name" id="bgDarkName">未设置</span>
+                    <button class="reset-btn" id="resetDarkBg">重置</button>
+                </div>
+            </div>
+
+            <button class="close-btn" id="closeSettings">关闭</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+</html>

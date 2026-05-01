@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "轻启标签页",
+  "version": "1.0.0",
+  "description": "简洁优雅的新标签页，实时时钟、必应搜索与一言语录相伴。",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "qinstart-newtab@example.com",
+      "strict_min_version": "109.0", 
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "chrome_url_overrides": {
+    "newtab": "QinStartNewTaab.html"
+  },
+
+  "chrome_settings_overrides": {
+    "homepage": "QinStartNewTaab.html"
+  },
+
+  "permissions": [],
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; connect-src https://v1.hitokoto.cn; img-src 'self' data: blob:;"
+  },
+
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>轻启标签页 · 简洁优雅的新标签页插件</title>
+    <meta name="description" content="一个开源、简洁、优雅的浏览器新标签页插件，支持实时时钟、必应搜索、一言语录和自定义背景。">
+    <style>
+        /* 极简样式，仅保证可读性，后续会替换为完整设计 */
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+        h1 { color: #0f172a; }
+        .demo-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 1rem 0;
+        }
+        .feature-list {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .feature-list li:last-child { border: none; }
+        footer {
+            margin-top: 3rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 2rem;
+        }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✨ 轻启标签页 (QinStart-NewTab)</h1>
+        <p>一个简洁优雅的浏览器新标签页插件，开源免费，尊重隐私，无广告。</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>🧪 在线演示</h2>
+            <p>点击下方按钮体验新标签页的完整功能（实时时钟、每日一言、搜索框、明暗主题切换）。</p>
+            <a href="/QinStart-NewTab.html" class="demo-button" target="_blank">🔍 打开在线演示版</a>
+            <p style="font-size: 0.9rem; color: #4b5563;">※ 演示版本与浏览器插件功能一致，但背景图片等个性化设置不会保存。</p>
+        </section>
+
+        <section>
+            <h2>📦 主要功能</h2>
+            <ul class="feature-list">
+                <li>⏰ 实时数字时钟与日期显示</li>
+                <li>🔍 必应 (Bing) 搜索引擎快捷入口</li>
+                <li>📝 “一言” (Hitokoto) 随机语录展示</li>
+                <li>☀️ / 🌙 亮色与暗色双主题模式，自动切换</li>
+                <li>🖼️ 可为亮/暗主题分别设置自定义背景图片</li>
+                <li>⚙️ 所有设置自动保存至浏览器本地存储</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📥 安装插件</h2>
+            <p>支持 Firefox、Chrome、Edge 浏览器。</p>
+            <ul>
+                <li>🦊 <strong>Firefox 用户</strong>：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/qinstart-newtab/" target="_blank">点击安装 Firefox 扩展</a>（等待上架，或手动加载 <code>.xpi</code>）</li>
+                <li>🐉 <strong>Chrome / Edge 用户</strong>：从 <a href="https://github.com/ZhX589/QinStart-NewTab/releases" target="_blank">Releases 页面</a> 下载对应 <code>.zip</code>，开启开发者模式后加载。</li>
+            </ul>
+            <p>🔗 项目源码：<a href="https://github.com/ZhX589/QinStart-NewTab" target="_blank">GitHub - ZhX589/QinStart-NewTab</a></p>
+        </section>
+
+        <section>
+            <h2>🛠️ 技术说明</h2>
+            <p>基于 Manifest V3，使用 CSS 自定义属性实现主题切换，数据来自 hitokoto.cn 开放 API，图标使用 Font Awesome 6.5.1。</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 轻启标签页 · ZhX589 · MIT 协议</p>
+        <p>由 ❤️ 和 开源社区 驱动</p>
+    </footer>
+
+</body>
+</html>

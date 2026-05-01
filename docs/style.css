@@ -1,0 +1,664 @@
+:root {
+    /* ========== 亮色模式变量 ========== */
+    --bg-light: #f0f0f0;
+    --bg-img-light: '';
+    --text-primary-light: #1a1a1a;
+    --text-secondary-light: #555;
+    --clock-color-light: #1a1a1a;
+    --date-color-light: #2c2c2c;
+    --search-bg-light: rgba(255, 255, 255, 0.75);
+    --search-text-light: #1a1a1a;
+    --search-placeholder-light: #999;
+    --quote-bg-light: rgba(255, 255, 255, 0.45);
+    --quote-text-light: #2c2c2c;
+    --quote-author-light: #666;
+    --quote-border-light: rgba(255, 255, 255, 0.6);
+    --settings-bg-light: rgba(255, 255, 255, 0.95);
+    --settings-text-light: #1a1a1a;
+    --settings-shadow-light: rgba(0, 0, 0, 0.2);
+
+    /* ========== 暗色模式变量 ========== */
+    --bg-dark: #1a1a2e;
+    --bg-img-dark: '';
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #aaa;
+    --clock-color-dark: #e0e0e0;
+    --date-color-dark: #aaa;
+    --search-bg-dark: rgba(40, 40, 60, 0.9);
+    --search-text-dark: #ddd;
+    --search-placeholder-dark: #888;
+    --quote-bg-dark: rgba(30, 30, 40, 0.55);
+    --quote-text-dark: #ddd;
+    --quote-author-dark: #aaa;
+    --quote-border-dark: rgba(255, 255, 255, 0.15);
+    --settings-bg-dark: rgba(30, 30, 45, 0.95);
+    --settings-text-dark: #e0e0e0;
+    --settings-shadow-dark: rgba(0, 0, 0, 0.5);
+
+    /* ========== 当前模式默认值(亮色) ========== */
+    --bg: var(--bg-light);
+    --bg-img: var(--bg-img-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --clock-color: var(--clock-color-light);
+    --date-color: var(--date-color-light);
+    --search-bg: var(--search-bg-light);
+    --search-text: var(--search-text-light);
+    --search-placeholder: var(--search-placeholder-light);
+    --quote-bg: var(--quote-bg-light);
+    --quote-text: var(--quote-text-light);
+    --quote-author: var(--quote-author-light);
+    --quote-border: var(--quote-border-light);
+    --settings-bg: var(--settings-bg-light);
+    --settings-text: var(--settings-text-light);
+    --settings-shadow: var(--settings-shadow-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ========== 毛玻璃主容器 ========== */
+.main-card {
+    width: 680px;
+    max-width: 85vw;
+    padding: 48px 40px 48px 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: background 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 亮色模式下的主容器样式 */
+body:not(.dark-mode) .main-card {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* 暗色模式下的主容器样式 */
+body.dark-mode .main-card {
+    background: rgba(20, 20, 40, 0.4);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== 顶部：时钟区域 ========== */
+.time-section {
+    text-align: center;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.clock {
+    font-size: 96px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--clock-color);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: color 0.4s ease;
+    font-variant-numeric: tabular-nums;
+    font-family: "SF Mono", "Cascadia Code", "Consolas", "Menlo", monospace;
+}
+
+.date {
+    font-size: 20px;
+    color: var(--date-color);
+    margin-top: 6px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: color 0.4s ease;
+}
+
+/* ========== 中部：搜索框 ========== */
+.search-section {
+    margin-bottom: 28px;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 28px;
+    padding: 0 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.search-box:focus-within {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.search-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--search-text);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.search-input::placeholder {
+    color: var(--search-placeholder);
+}
+
+/* ========== 底部：一言语录 ========== */
+.quote-section {
+    width: 100%;
+}
+
+.quote-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 20px 24px 18px;
+    text-align: center;
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.quote-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--quote-text);
+    transition: color 0.4s ease;
+    word-break: break-word;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.quote-author {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--quote-author);
+    transition: color 0.4s ease;
+    font-style: normal;
+}
+
+/* ========== 暗色模式下的容器微调 ========== */
+body.dark-mode .main-card {
+    background: rgba(15, 15, 30, 0.5);
+}
+
+body.dark-mode .search-box {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .search-box:focus-within {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .quote-card {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== 右下角设置按钮 ========== */
+.settings-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--quote-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease, transform 0.2s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    z-index: 100;
+}
+
+.settings-btn:hover {
+    transform: scale(1.08) rotate(30deg);
+}
+
+.settings-btn:active {
+    transform: scale(0.95);
+}
+
+/* ========== 设置面板 ========== */
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.settings-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.settings-panel {
+    background: var(--settings-bg);
+    color: var(--settings-text);
+    border-radius: 20px;
+    padding: 32px 28px 24px;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 16px 48px var(--settings-shadow);
+    transition: background 0.4s ease, color 0.4s ease;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.settings-panel h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    transition: color 0.4s ease;
+}
+
+.mode-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background: rgba(128, 128, 128, 0.1);
+    color: var(--text-primary);
+    transition: all 0.25s ease;
+    font-family: inherit;
+}
+
+.mode-btn.active {
+    border-color: #5b9bd5;
+    background: rgba(91, 155, 213, 0.15);
+    font-weight: 600;
+}
+
+.mode-btn:hover {
+    background: rgba(128, 128, 128, 0.2);
+}
+
+.file-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(91, 155, 213, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.file-input-label:hover {
+    background: rgba(91, 155, 213, 0.35);
+}
+
+.file-input {
+    display: none;
+}
+
+.file-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.4s ease;
+}
+
+.reset-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.reset-btn:hover {
+    border-color: #e05555;
+    color: #e05555;
+}
+
+.close-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.2);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s ease;
+    font-family: inherit;
+}
+
+.close-btn:hover {
+    background: rgba(128, 128, 128, 0.35);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 600px) {
+    .main-card {
+        padding: 32px 24px 32px 24px;
+        border-radius: 24px;
+    }
+    
+    .clock {
+        font-size: 48px;
+    }
+    
+    .date {
+        font-size: 14px;
+    }
+    
+    .search-box {
+        height: 46px;
+        padding: 0 16px;
+    }
+    
+    .quote-card {
+        padding: 16px 18px 14px;
+    }
+    
+    .quote-text {
+        font-size: 13px;
+    }
+}
+
+/* ========== 搜索框聚焦全局毛玻璃效果 ========== */
+/* 毛玻璃背景层 */
+body.search-focused::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 85;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+}
+
+body.search-focused::before {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 所有模块的淡入淡出过渡基础 */
+.time-section,
+.search-section,
+.quote-section,
+.settings-btn {
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+/* 聚焦时非搜索模块淡出 */
+body.search-focused .time-section,
+body.search-focused .quote-section,
+body.search-focused .settings-btn {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* 搜索框区域 - 平滑移动效果 */
+.search-section {
+    z-index: 100;
+    position: relative;
+    transition: transform 0.25s ease-out, margin-bottom 0.25s ease-out, width 0.25s ease-out;
+}
+
+/* 聚焦时搜索框轻微上移并稍微放大 */
+body.search-focused .search-section {
+    transform: translateY(-8px);
+    margin-bottom: 0;
+}
+
+body.search-focused .search-box {
+    transform: scale(1.02);
+    transition: transform 0.25s ease-out, background 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+/* 聚焦时的搜索框样式增强 */
+body.search-focused .search-box {
+    background: var(--search-bg);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* 暗色模式聚焦微调 */
+body.dark-mode.search-focused .search-box {
+    background: rgba(40, 40, 60, 0.95);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 亮色模式聚焦微调 */
+body.light-mode.search-focused .search-box {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 聚焦时输入框文字稍微放大 */
+body.search-focused .search-input {
+    font-size: 16px;
+    transition: font-size 0.25s ease-out;
+}
+
+/* 聚焦时 main-card 完全透明/隐藏（让毛玻璃边框消失） */
+body.search-focused .main-card {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 可选：时钟区域轻微缩放效果（更细腻） */
+body.search-focused .time-section {
+    transform: scale(0.98);
+}
+
+/* 可选：一言区域轻微缩放效果 */
+body.search-focused .quote-section {
+    transform: scale(0.98);
+}
+
+/* 定义统一的动画曲线变量 */
+:root {
+    --smooth-curve: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --fade-curve: ease-out;
+}
+
+/* 然后应用到各个过渡中 */
+.time-section,
+.search-section,
+.quote-section,
+.settings-btn {
+    transition: opacity 0.25s var(--fade-curve), transform 0.3s var(--smooth-curve);
+}
+
+.search-section {
+    transition: transform 0.3s var(--smooth-curve), margin-bottom 0.3s var(--smooth-curve);
+}
+
+body.search-focused .search-box {
+    transform: scale(1.02);
+    transition: transform 0.3s var(--smooth-curve), background 0.25s var(--fade-curve), box-shadow 0.25s var(--fade-curve);
+}
+
+/* ========== 开关切换样式 ========== */
+.search-behavior-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.4);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #5b9bd5;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: color 0.4s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 设置面板中其他元素的过渡保持 */
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    transition: color 0.4s ease;
+}
+
